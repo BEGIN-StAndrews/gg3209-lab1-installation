@@ -1,34 +1,51 @@
 name: Lab 1 Validation
+
 on: [push]
+
 jobs:
   validate:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v2
+
+    - name: 🐍 Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
-    - name: Install dependencies
+
+    - name: 📦 Install Python dependencies
       run: |
-        pip install jupyter nbconvert pandas numpy matplotlib geopandas folium
-    - name: Check required files
+        pip install jupyter nbconvert pandas numpy matplotlib geopandas folium nbformat
+
+    - name: 📁 Check required files (basic validation)
       run: |
-        echo "Checking for required files..."
+        echo "🔍 Checking for required files..."
         test -f my_first_notebook.ipynb || { echo "❌ Notebook missing"; exit 1; }
         test -f my_first_notebook.pdf || { echo "❌ PDF missing"; exit 1; }
-        ls screenshot_*.png || { echo "❌ Screenshots missing"; exit 1; }
-        echo "✅ All required files present"
-    - name: Validate notebook
+        test -f screenshot_1_installation_check.png || { echo "❌ screenshot_1_installation_check.png missing"; exit 1; }
+        test -f screenshot_2_jupyter_home.png || { echo "❌ screenshot_2_jupyter_home.png missing"; exit 1; }
+        test -f screenshot_3_notebook_complete.png || { echo "❌ screenshot_3_notebook_complete.png missing"; exit 1; }
+        echo "✅ All required files are present"
+
+    - name: ⚙️ Test notebook execution (quick check)
       run: |
-        echo "Testing notebook execution..."
-        jupyter nbconvert --to notebook --execute my_first_notebook.ipynb
-        echo "✅ Notebook runs successfully"
-    - name: Check for anti-AI measures
+        echo "🚀 Executing notebook to ensure it runs..."
+        jupyter nbconvert --to notebook --execute my_first_notebook.ipynb --output executed_notebook.ipynb
+        echo "✅ Notebook ran successfully"
+
+    - name: 🔐 Check anti-AI verification elements
       run: |
-        echo "Checking for verification elements..."
-        grep -q "datetime.datetime.now()" my_first_notebook.ipynb || { echo "❌ Timestamp verification missing"; exit 1; }
-        grep -q "platform.node()" my_first_notebook.ipynb || { echo "❌ Computer name verification missing"; exit 1; }
-        echo "✅ Verification elements found"
-    - name: Success
-      run: echo "🎉 Lab 1 validation passed!"
+        echo "🛡️ Verifying presence of student ID elements..."
+        grep -q "datetime.datetime.now()" my_first_notebook.ipynb || { echo "❌ Timestamp code missing"; exit 1; }
+        grep -q "platform.node()" my_first_notebook.ipynb || { echo "❌ Computer name code missing"; exit 1; }
+        echo "✅ Verification elements are present"
+
+    - name: 🧪 Run point-based autograder (optional but useful)
+      run: |
+        echo "📊 Running test_assignment.py for score breakdown..."
+        python test_assignment.py || echo "⚠️ Autograder ran with issues (check output)."
+
+    - name: ✅ All checks passed
+      run: echo "🎉 Lab 1-Installation validation passed!"
