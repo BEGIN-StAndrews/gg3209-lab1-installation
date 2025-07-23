@@ -1,0 +1,34 @@
+name: Lab 1 Validation
+on: [push]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        pip install jupyter nbconvert pandas numpy matplotlib geopandas folium
+    - name: Check required files
+      run: |
+        echo "Checking for required files..."
+        test -f my_first_notebook.ipynb || { echo "❌ Notebook missing"; exit 1; }
+        test -f my_first_notebook.pdf || { echo "❌ PDF missing"; exit 1; }
+        ls screenshot_*.png || { echo "❌ Screenshots missing"; exit 1; }
+        echo "✅ All required files present"
+    - name: Validate notebook
+      run: |
+        echo "Testing notebook execution..."
+        jupyter nbconvert --to notebook --execute my_first_notebook.ipynb
+        echo "✅ Notebook runs successfully"
+    - name: Check for anti-AI measures
+      run: |
+        echo "Checking for verification elements..."
+        grep -q "datetime.datetime.now()" my_first_notebook.ipynb || { echo "❌ Timestamp verification missing"; exit 1; }
+        grep -q "platform.node()" my_first_notebook.ipynb || { echo "❌ Computer name verification missing"; exit 1; }
+        echo "✅ Verification elements found"
+    - name: Success
+      run: echo "🎉 Lab 1 validation passed!"
