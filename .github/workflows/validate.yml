@@ -44,7 +44,7 @@ jobs:
 
     - name: 🧪 Run point-based autograder (optional but useful)
       run: |
-        echo "📊 Running test_assignment.py for score breakdown..."
+        echo "📊 Running test.py for score breakdown..."
         python test_assignment.py || echo "⚠️ Autograder ran with issues (check output)."
 
     - name: ✅ All checks passed
