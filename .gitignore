@@ -4,3 +4,9 @@
 .Ruserdata
 *.Rproj
 *.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints
+.virtual_documents/

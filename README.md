@@ -1,5 +1,15 @@
-[![Lab 1 Validation](https://github.com/BEGIN-StAndrews/gg3209-lab1-installation/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/BEGIN-StAndrews/gg3209-lab1-installation/actions/workflows/validate.yml)
+[![Lab 1 Validation](https://github.com/BEGIN-StAndrews/gg3209-lab1-installation/actions/workflows/classroom.yml/badge.svg?branch=main)](https://github.com/BEGIN-StAndrews/gg3209-lab1-installation/actions/workflows/classroom.yml)
 
 # GG3209 Lab No 1 - Installation
 
-This is the repo template to use to grade Firts Part of Lab No 1
+Repository template to the Lab No 2 Assignment part No 1: Installation:
+
+Students need to include in their own Classroom repo:
+
+1.  All requested Screenshots (make sure you include the names as it was instructed, there are automatic tests to validate their existance)
+2.  The "my_first_notebook.ipynb" notebook file with the required cells (Make sure you follow the instructions and avoid the use of AI, there are automatic validations that will have an impact in your grade.
+3.  the "my_first_notebook.pdf"
+
+::: {.callout-caution} Do not change or alter the tests files, that will also have an impact of your grade and can be consider academic misconduct. :::
+
+For questions contact the lecturer or post your questions in the Teams Channel.
