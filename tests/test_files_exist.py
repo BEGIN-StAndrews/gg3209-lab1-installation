@@ -3,9 +3,9 @@ import sys
 
 # Define required files and associated grading points
 REQUIRED_FILES = {
-    "screenshot_1_installation_check.png": 25,
-    "screenshot_2_jupyter_home.png": 25,
-    "screenshot_3_notebook_complete.png": 25,
+    "screenshot_1_installation_check.png": 10,
+    "screenshot_2_jupyter_home.png": 10,
+    "screenshot_3_notebook_complete.png": 10,
 }
 
 def test_required_files():

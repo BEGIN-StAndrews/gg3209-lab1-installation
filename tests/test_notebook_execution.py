@@ -26,19 +26,15 @@ def test_notebook_runs():
     print("\n2. Testing notebook execution...")
     
     if not os.path.isfile(NOTEBOOK_FILE):
-        print(f"[✘] Cannot execute - notebook not found (0/30 points)")
+        print("[!] Notebook not found, skipping execution test.")
         return 0
 
+    with open(NOTEBOOK_FILE, "r", encoding="utf-8") as f:
+        nb = nbformat.read(f, as_version=4)
+    ep = ExecutePreprocessor(timeout=120, kernel_name='python3')
     try:
-        with open(NOTEBOOK_FILE, "r", encoding="utf-8") as f:
-            nb = nbformat.read(f, as_version=4)
-
-        # Execute notebook
-        notebook_dir = os.path.abspath(os.path.join(NOTEBOOK_FILE, os.pardir))
-        ep = ExecutePreprocessor(timeout=120, kernel_name='python3')
-        ep.preprocess(nb, {'metadata': {'path': notebook_dir}})
-        
-        print("[✔] Notebook executed successfully (+30 points)")
+        ep.preprocess(nb, {'metadata': {'path': './'}})
+        print("[✔] Notebook executed successfully.")
         return 30
     except Exception as e:
         print(f"[✘] Notebook execution failed: {e} (15/30 points)")
@@ -94,8 +90,7 @@ def main():
     print(f"Notebook executes: {score2}/30") 
     print(f"Anti-AI verification: {score3}/10")
     print(f"Total Score: {total_score}/{max_score}")
-    print(f"Score assigned to: {total_score}")
-    
+
     return total_score
 
 if __name__ == "__main__":
