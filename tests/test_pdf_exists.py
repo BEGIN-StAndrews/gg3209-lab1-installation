@@ -7,3 +7,7 @@ def test_pdf_exists(pdf_name="my_first_notebook.pdf"):
     else:
         print(f"[✘] PDF missing: {pdf_name}")
         return 0
+
+if __name__ == "__main__":
+    test_pdf_exists()
+

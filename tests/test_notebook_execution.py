@@ -3,7 +3,7 @@ import sys
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
 
-NOTEBOOK_FILE = os.path.join(".", "my_first_notebook.ipynb")
+NOTEBOOK_FILE = ("my_first_notebook.ipynb")
 
 VERIFICATION_STRINGS = [
     "datetime.datetime.now()",
@@ -11,7 +11,7 @@ VERIFICATION_STRINGS = [
 ]
 
 def test_notebook_runs():
-    print("Executing notebook...\n")
+    print("Executing notebook...")
     
     if not os.path.isfile(NOTEBOOK_FILE):
         print(f"[✘] Notebook not found at: {NOTEBOOK_FILE}")
